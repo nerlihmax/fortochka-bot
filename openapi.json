@@ -1,0 +1,3868 @@
+{
+    "components": {
+        "examples": {},
+        "headers": {},
+        "parameters": {},
+        "requestBodies": {},
+        "responses": {},
+        "schemas": {
+            "LanguageCodes": {
+                "type": "string",
+                "enum": [
+                    "en",
+                    "fr",
+                    "ar",
+                    "de",
+                    "es",
+                    "es-419",
+                    "it",
+                    "ja",
+                    "ko",
+                    "pl",
+                    "pt-br",
+                    "ru",
+                    "tr"
+                ]
+            },
+            "TournamentEntry": {
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "displayId": {
+                        "type": "string"
+                    },
+                    "region": {
+                        "type": "string"
+                    },
+                    "detectionDate": {
+                        "type": "string"
+                    },
+                    "name_line1": {
+                        "type": "string"
+                    },
+                    "name_line2": {
+                        "type": "string"
+                    },
+                    "poster": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "posterBack": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "loadingScreen": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "tileImage": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "short_description": {
+                        "type": "string"
+                    },
+                    "long_description": {
+                        "type": "string"
+                    },
+                    "schedule": {
+                        "type": "string"
+                    },
+                    "beginTime": {
+                        "type": "string"
+                    },
+                    "endTime": {
+                        "type": "string"
+                    },
+                    "cumulative": {
+                        "type": "boolean"
+                    },
+                    "platforms": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "renderData": {},
+                    "windows": {
+                        "items": {
+                            "properties": {
+                                "endTime": {
+                                    "type": "string"
+                                },
+                                "beginTime": {
+                                    "type": "string"
+                                },
+                                "windowId": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["endTime", "beginTime", "windowId"],
+                            "type": "object"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "id",
+                    "displayId",
+                    "region",
+                    "detectionDate",
+                    "name_line1",
+                    "name_line2",
+                    "poster",
+                    "posterBack",
+                    "loadingScreen",
+                    "tileImage",
+                    "short_description",
+                    "long_description",
+                    "schedule",
+                    "beginTime",
+                    "endTime",
+                    "cumulative",
+                    "platforms",
+                    "renderData",
+                    "windows"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "TournamentResponse": {
+                "properties": {
+                    "result": {
+                        "type": "boolean"
+                    },
+                    "region": {
+                        "type": "string"
+                    },
+                    "season": {
+                        "type": "number",
+                        "format": "double",
+                        "nullable": true
+                    },
+                    "lang": {
+                        "$ref": "#/components/schemas/LanguageCodes"
+                    },
+                    "events": {
+                        "items": {
+                            "$ref": "#/components/schemas/TournamentEntry"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": ["result", "region", "season", "lang", "events"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "TournamentRegions": {
+                "type": "string",
+                "enum": [
+                    "EU",
+                    "NAE",
+                    "NAW",
+                    "NAC",
+                    "ASIA",
+                    "BR",
+                    "ME",
+                    "OCE",
+                    "ONSITE",
+                    "ALL"
+                ]
+            },
+            "TournamentWindowScoring": {
+                "properties": {
+                    "trackedStat": {
+                        "type": "string"
+                    },
+                    "matchRule": {
+                        "type": "string"
+                    },
+                    "rewardTiers": {
+                        "items": {
+                            "properties": {
+                                "multiplicative": {
+                                    "type": "boolean"
+                                },
+                                "pointsEarned": {
+                                    "type": "number",
+                                    "format": "double"
+                                },
+                                "keyValue": {
+                                    "type": "number",
+                                    "format": "double"
+                                }
+                            },
+                            "required": [
+                                "multiplicative",
+                                "pointsEarned",
+                                "keyValue"
+                            ],
+                            "type": "object"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": ["trackedStat", "matchRule", "rewardTiers"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "TournamentWindowTieRule": {
+                "properties": {
+                    "basePointsBits": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "components": {
+                        "items": {
+                            "properties": {
+                                "aggregation": {
+                                    "type": "string"
+                                },
+                                "multiplier": {
+                                    "type": "number",
+                                    "format": "double",
+                                    "nullable": true
+                                },
+                                "bits": {
+                                    "type": "number",
+                                    "format": "double"
+                                },
+                                "trackedStat": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "aggregation",
+                                "multiplier",
+                                "bits",
+                                "trackedStat"
+                            ],
+                            "type": "object"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": ["basePointsBits", "components"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "TournamentWindowPayout": {
+                "properties": {
+                    "scoreId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "scoringType": {
+                        "type": "string"
+                    },
+                    "ranks": {
+                        "items": {
+                            "properties": {
+                                "payouts": {
+                                    "items": {
+                                        "properties": {
+                                            "quantity": {
+                                                "type": "number",
+                                                "format": "double"
+                                            },
+                                            "value": {
+                                                "type": "string"
+                                            },
+                                            "rewardMode": {
+                                                "type": "string"
+                                            },
+                                            "rewardType": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "quantity",
+                                            "value",
+                                            "rewardMode",
+                                            "rewardType"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "threshold": {
+                                    "type": "number",
+                                    "format": "double"
+                                }
+                            },
+                            "required": ["payouts", "threshold"],
+                            "type": "object"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": ["scoreId", "scoringType", "ranks"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "TournamentWindowResult": {
+                "properties": {
+                    "gameId": {
+                        "type": "string"
+                    },
+                    "eventId": {
+                        "type": "string"
+                    },
+                    "eventWindowId": {
+                        "type": "string"
+                    },
+                    "teamAccountIds": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "liveSessionId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "pointsEarned": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "score": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "rank": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "percentile": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "pointBreakdown": {
+                        "properties": {},
+                        "additionalProperties": {
+                            "properties": {
+                                "pointsEarned": {
+                                    "type": "number",
+                                    "format": "double"
+                                },
+                                "timesAchieved": {
+                                    "type": "number",
+                                    "format": "double"
+                                }
+                            },
+                            "required": ["pointsEarned", "timesAchieved"],
+                            "type": "object"
+                        },
+                        "type": "object"
+                    },
+                    "sessionHistory": {
+                        "items": {
+                            "properties": {
+                                "trackedStats": {
+                                    "properties": {},
+                                    "additionalProperties": {
+                                        "type": "number",
+                                        "format": "double"
+                                    },
+                                    "type": "object"
+                                },
+                                "endTime": {
+                                    "type": "string"
+                                },
+                                "sessionId": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "trackedStats",
+                                "endTime",
+                                "sessionId"
+                            ],
+                            "type": "object"
+                        },
+                        "type": "array"
+                    },
+                    "unscoredSessions": {
+                        "items": {},
+                        "type": "array"
+                    },
+                    "tokens": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "teamId": {
+                        "type": "string"
+                    },
+                    "teamAccountNames": {
+                        "items": {
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "id": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["name", "id"],
+                            "type": "object"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "gameId",
+                    "eventId",
+                    "eventWindowId",
+                    "teamAccountIds",
+                    "liveSessionId",
+                    "pointsEarned",
+                    "score",
+                    "rank",
+                    "percentile",
+                    "pointBreakdown",
+                    "sessionHistory",
+                    "unscoredSessions",
+                    "tokens",
+                    "teamId",
+                    "teamAccountNames"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "TournamentWindowResponse": {
+                "properties": {
+                    "result": {
+                        "type": "boolean"
+                    },
+                    "page": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "totalPages": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "session": {
+                        "properties": {
+                            "results": {
+                                "items": {
+                                    "$ref": "#/components/schemas/TournamentWindowResult"
+                                },
+                                "type": "array"
+                            },
+                            "payout": {
+                                "$ref": "#/components/schemas/TournamentWindowPayout"
+                            },
+                            "rules": {
+                                "properties": {
+                                    "tie": {
+                                        "$ref": "#/components/schemas/TournamentWindowTieRule"
+                                    },
+                                    "scoring": {
+                                        "items": {
+                                            "$ref": "#/components/schemas/TournamentWindowScoring"
+                                        },
+                                        "type": "array"
+                                    }
+                                },
+                                "required": ["tie", "scoring"],
+                                "type": "object"
+                            },
+                            "useIndividualScores": {
+                                "type": "boolean"
+                            },
+                            "finished": {
+                                "type": "boolean"
+                            },
+                            "matchCap": {
+                                "type": "number",
+                                "format": "double"
+                            },
+                            "endTime": {
+                                "type": "string"
+                            },
+                            "beginTime": {
+                                "type": "string"
+                            },
+                            "windowId": {
+                                "type": "string"
+                            },
+                            "region": {
+                                "type": "string"
+                            },
+                            "eventDisplayId": {
+                                "type": "string"
+                            },
+                            "eventId": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "results",
+                            "payout",
+                            "rules",
+                            "useIndividualScores",
+                            "finished",
+                            "matchCap",
+                            "endTime",
+                            "beginTime",
+                            "windowId",
+                            "region",
+                            "eventDisplayId",
+                            "eventId"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "required": ["result", "page", "totalPages", "session"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "Augment": {
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "collectionTag": {
+                        "type": "string"
+                    },
+                    "tabTitle": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "additionalDescription": {
+                        "type": "string"
+                    },
+                    "rarity": {
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["name", "id"],
+                        "type": "object"
+                    },
+                    "tags": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "icon": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "added": {
+                        "properties": {
+                            "version": {
+                                "type": "string"
+                            },
+                            "date": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["version", "date"],
+                        "type": "object"
+                    },
+                    "weight": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                },
+                "required": [
+                    "id",
+                    "collectionTag",
+                    "tabTitle",
+                    "name",
+                    "description",
+                    "additionalDescription",
+                    "rarity",
+                    "tags",
+                    "icon",
+                    "added",
+                    "weight"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "AugmentsResponse": {
+                "properties": {
+                    "result": {
+                        "type": "boolean"
+                    },
+                    "lang": {
+                        "type": "string"
+                    },
+                    "season": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "augments": {
+                        "items": {
+                            "$ref": "#/components/schemas/Augment"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": ["result", "lang", "season", "augments"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "TwitchDropStatus": {
+                "type": "string",
+                "enum": ["ALL", "ACTIVE", "INACTIVE"]
+            },
+            "TwitchAllowedChannel": {
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "displayName": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "required": ["id", "displayName", "name"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "TwitchAllowed": {
+                "properties": {
+                    "channels": {
+                        "items": {
+                            "$ref": "#/components/schemas/TwitchAllowedChannel"
+                        },
+                        "type": "array"
+                    },
+                    "isEnabled": {
+                        "type": "boolean"
+                    }
+                },
+                "required": ["channels", "isEnabled"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "TwitchDropBenefit": {
+                "properties": {
+                    "benefitID": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "entitlementLimit": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "imageAssetURL": {
+                        "type": "string"
+                    },
+                    "isIosAvailable": {
+                        "type": "boolean"
+                    }
+                },
+                "required": [
+                    "benefitID",
+                    "name",
+                    "createdAt",
+                    "entitlementLimit",
+                    "imageAssetURL",
+                    "isIosAvailable"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "TimeBasedDrop": {
+                "properties": {
+                    "timeBasedDropUUID": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "startDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "endDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "requiredMinutesWatched": {
+                        "type": "number",
+                        "format": "double",
+                        "nullable": true
+                    },
+                    "benefits": {
+                        "items": {
+                            "$ref": "#/components/schemas/TwitchDropBenefit"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "timeBasedDropUUID",
+                    "name",
+                    "startDate",
+                    "endDate",
+                    "requiredMinutesWatched",
+                    "benefits"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "TwitchDrop": {
+                "properties": {
+                    "dropUUID": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "gameArtUrl": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "startDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "endDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "detailsURL": {
+                        "type": "string"
+                    },
+                    "allowed": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/TwitchAllowed"
+                            }
+                        ],
+                        "nullable": true
+                    },
+                    "timeBasedDrops": {
+                        "items": {
+                            "$ref": "#/components/schemas/TimeBasedDrop"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "dropUUID",
+                    "name",
+                    "description",
+                    "gameArtUrl",
+                    "status",
+                    "startDate",
+                    "endDate",
+                    "detailsURL",
+                    "allowed",
+                    "timeBasedDrops"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "TwitchDropResponse": {
+                "properties": {
+                    "result": {
+                        "type": "boolean"
+                    },
+                    "status": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/TwitchDropStatus"
+                            }
+                        ],
+                        "nullable": true
+                    },
+                    "drops": {
+                        "items": {
+                            "$ref": "#/components/schemas/TwitchDrop"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": ["result", "status", "drops"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "ShopDisplayAsset": {
+                "properties": {
+                    "displayAsset": {
+                        "type": "string"
+                    },
+                    "materialInstance": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string"
+                    },
+                    "flipbook": {
+                        "type": "string"
+                    },
+                    "background_texture": {
+                        "type": "string"
+                    },
+                    "background": {
+                        "type": "string"
+                    },
+                    "full_background": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "displayAsset",
+                    "materialInstance",
+                    "url",
+                    "flipbook",
+                    "background_texture",
+                    "background",
+                    "full_background"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "BundlesResponseKeyImage": {
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "url": {
+                        "type": "string"
+                    }
+                },
+                "required": ["type", "url"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "BundlesResponsePrice": {
+                "properties": {
+                    "paymentCurrencyCode": {
+                        "type": "string"
+                    },
+                    "paymentCurrencySymbol": {
+                        "type": "string"
+                    },
+                    "paymentCurrencyAmount": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "paymentCurrencyAmountNatural": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                },
+                "required": [
+                    "paymentCurrencyCode",
+                    "paymentCurrencySymbol",
+                    "paymentCurrencyAmount",
+                    "paymentCurrencyAmountNatural"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "BundlesResponseBundle": {
+                "properties": {
+                    "offerId": {
+                        "type": "string"
+                    },
+                    "available": {
+                        "type": "boolean"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "descriptionLong": {
+                        "type": "string"
+                    },
+                    "displayAssets": {
+                        "items": {
+                            "$ref": "#/components/schemas/ShopDisplayAsset"
+                        },
+                        "type": "array"
+                    },
+                    "thumbnail": {
+                        "type": "string"
+                    },
+                    "keyImages": {
+                        "items": {
+                            "$ref": "#/components/schemas/BundlesResponseKeyImage"
+                        },
+                        "type": "array"
+                    },
+                    "prices": {
+                        "items": {
+                            "$ref": "#/components/schemas/BundlesResponsePrice"
+                        },
+                        "type": "array"
+                    },
+                    "granted": {
+                        "items": {
+                            "properties": {
+                                "quantity": {
+                                    "type": "number",
+                                    "format": "double"
+                                },
+                                "templateId": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["quantity", "templateId"],
+                            "type": "object"
+                        },
+                        "type": "array"
+                    },
+                    "viewableDate": {
+                        "type": "string"
+                    },
+                    "effectiveDate": {
+                        "type": "string"
+                    },
+                    "expiryDate": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "tileSize": {
+                        "type": "string"
+                    },
+                    "platforms": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "offerId",
+                    "available",
+                    "name",
+                    "description",
+                    "descriptionLong",
+                    "displayAssets",
+                    "thumbnail",
+                    "keyImages",
+                    "prices",
+                    "granted",
+                    "viewableDate",
+                    "effectiveDate",
+                    "expiryDate",
+                    "tileSize",
+                    "platforms"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "BundlesResponse": {
+                "properties": {
+                    "result": {
+                        "type": "boolean"
+                    },
+                    "lang": {
+                        "$ref": "#/components/schemas/LanguageCodes"
+                    },
+                    "bundles": {
+                        "items": {
+                            "$ref": "#/components/schemas/BundlesResponseBundle"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": ["result", "lang", "bundles"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "Rarity": {
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "translationID": {
+                        "type": "string"
+                    },
+                    "colors": {
+                        "properties": {
+                            "Color5": {
+                                "type": "string"
+                            },
+                            "Color4": {
+                                "type": "string"
+                            },
+                            "Color3": {
+                                "type": "string"
+                            },
+                            "Color2": {
+                                "type": "string"
+                            },
+                            "Color1": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "Color5",
+                            "Color4",
+                            "Color3",
+                            "Color2",
+                            "Color1"
+                        ],
+                        "type": "object"
+                    },
+                    "image": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "required": ["id", "name", "translationID", "colors", "image"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "RarityResponse": {
+                "properties": {
+                    "result": {
+                        "type": "boolean"
+                    },
+                    "lang": {
+                        "type": "string"
+                    },
+                    "rarities": {
+                        "items": {
+                            "$ref": "#/components/schemas/Rarity"
+                        },
+                        "type": "array"
+                    },
+                    "series": {
+                        "items": {
+                            "$ref": "#/components/schemas/Rarity"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": ["result", "lang", "rarities", "series"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "SimpleRarityModel": {
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "required": ["id", "name"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "ShopOfferTag": {
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "text": {
+                        "type": "string"
+                    }
+                },
+                "required": ["id", "text"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "ItemBattlepassInfoModel": {
+                "properties": {
+                    "season": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "tier": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "displayText": {
+                        "properties": {
+                            "chapterSeason": {
+                                "type": "string"
+                            },
+                            "season": {
+                                "type": "string"
+                            },
+                            "chapter": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["chapterSeason", "season", "chapter"],
+                        "type": "object"
+                    },
+                    "battlePassName": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "season",
+                    "tier",
+                    "type",
+                    "displayText",
+                    "battlePassName"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "CosmeticsSetModel": {
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "partOf": {
+                        "type": "string"
+                    }
+                },
+                "required": ["id", "name", "partOf"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "ItemIntroInfoModel": {
+                "properties": {
+                    "chapter": {
+                        "type": "string"
+                    },
+                    "season": {
+                        "type": "string"
+                    },
+                    "text": {
+                        "type": "string"
+                    }
+                },
+                "required": ["chapter", "season", "text"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "CosmeticsStyleModel": {
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "channel": {
+                        "type": "string"
+                    },
+                    "channelName": {
+                        "type": "string"
+                    },
+                    "tag": {
+                        "type": "string"
+                    },
+                    "isDefault": {
+                        "type": "boolean"
+                    },
+                    "startUnlocked": {
+                        "type": "boolean"
+                    },
+                    "hideIfNotOwned": {
+                        "type": "boolean"
+                    },
+                    "image": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "required": [
+                    "name",
+                    "channel",
+                    "channelName",
+                    "tag",
+                    "isDefault",
+                    "startUnlocked",
+                    "hideIfNotOwned",
+                    "image"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "FullCosmeticModel": {
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["name", "id"],
+                        "type": "object"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "rarity": {
+                        "$ref": "#/components/schemas/SimpleRarityModel"
+                    },
+                    "series": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/SimpleRarityModel"
+                            }
+                        ],
+                        "nullable": true
+                    },
+                    "price": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "added": {
+                        "properties": {
+                            "version": {
+                                "type": "string"
+                            },
+                            "date": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["version", "date"],
+                        "type": "object"
+                    },
+                    "builtInEmote": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/SimpleRarityModel"
+                            }
+                        ],
+                        "nullable": true
+                    },
+                    "copyrightedAudio": {
+                        "type": "boolean"
+                    },
+                    "upcoming": {
+                        "type": "boolean"
+                    },
+                    "reactive": {
+                        "type": "boolean"
+                    },
+                    "releaseDate": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "lastAppearance": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "interest": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "images": {
+                        "properties": {
+                            "full_background": {
+                                "type": "string"
+                            },
+                            "icon_background": {
+                                "type": "string"
+                            },
+                            "background": {
+                                "type": "string"
+                            },
+                            "featured": {
+                                "type": "string"
+                            },
+                            "icon": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "full_background",
+                            "icon_background",
+                            "background",
+                            "featured",
+                            "icon"
+                        ],
+                        "type": "object"
+                    },
+                    "video": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "audio": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "gameplayTags": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "apiTags": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "searchTags": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "battlepass": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/ItemBattlepassInfoModel"
+                            }
+                        ],
+                        "nullable": true
+                    },
+                    "set": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/CosmeticsSetModel"
+                            }
+                        ],
+                        "nullable": true
+                    },
+                    "introduction": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/ItemIntroInfoModel"
+                            }
+                        ],
+                        "nullable": true
+                    },
+                    "displayAssets": {
+                        "items": {
+                            "$ref": "#/components/schemas/ShopDisplayAsset"
+                        },
+                        "type": "array"
+                    },
+                    "shopHistory": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "nullable": true
+                    },
+                    "styles": {
+                        "items": {
+                            "$ref": "#/components/schemas/CosmeticsStyleModel"
+                        },
+                        "type": "array"
+                    },
+                    "grants": {
+                        "items": {
+                            "$ref": "#/components/schemas/FullCosmeticModel"
+                        },
+                        "type": "array",
+                        "nullable": true
+                    },
+                    "grantedBy": {
+                        "items": {
+                            "$ref": "#/components/schemas/FullCosmeticModel"
+                        },
+                        "type": "array",
+                        "nullable": true
+                    }
+                },
+                "required": [
+                    "id",
+                    "type",
+                    "name",
+                    "description",
+                    "rarity",
+                    "series",
+                    "price",
+                    "added",
+                    "builtInEmote",
+                    "copyrightedAudio",
+                    "upcoming",
+                    "reactive",
+                    "releaseDate",
+                    "lastAppearance",
+                    "interest",
+                    "images",
+                    "video",
+                    "audio",
+                    "gameplayTags",
+                    "apiTags",
+                    "searchTags",
+                    "battlepass",
+                    "set",
+                    "introduction",
+                    "displayAssets",
+                    "shopHistory",
+                    "styles",
+                    "grants",
+                    "grantedBy"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "ShopOffer": {
+                "properties": {
+                    "mainId": {
+                        "type": "string"
+                    },
+                    "displayName": {
+                        "type": "string"
+                    },
+                    "displayDescription": {
+                        "type": "string"
+                    },
+                    "displayType": {
+                        "type": "string"
+                    },
+                    "mainType": {
+                        "type": "string"
+                    },
+                    "offerId": {
+                        "type": "string"
+                    },
+                    "devName": {
+                        "type": "string"
+                    },
+                    "displayAssets": {
+                        "items": {
+                            "$ref": "#/components/schemas/ShopDisplayAsset"
+                        },
+                        "type": "array"
+                    },
+                    "firstReleaseDate": {
+                        "type": "string"
+                    },
+                    "previousReleaseDate": {
+                        "type": "string"
+                    },
+                    "giftAllowed": {
+                        "type": "boolean"
+                    },
+                    "buyAllowed": {
+                        "type": "boolean"
+                    },
+                    "price": {
+                        "properties": {
+                            "floorPrice": {
+                                "type": "number",
+                                "format": "double"
+                            },
+                            "finalPrice": {
+                                "type": "number",
+                                "format": "double"
+                            },
+                            "regularPrice": {
+                                "type": "number",
+                                "format": "double"
+                            }
+                        },
+                        "required": [
+                            "floorPrice",
+                            "finalPrice",
+                            "regularPrice"
+                        ],
+                        "type": "object"
+                    },
+                    "rarity": {
+                        "$ref": "#/components/schemas/SimpleRarityModel"
+                    },
+                    "series": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/SimpleRarityModel"
+                            }
+                        ],
+                        "nullable": true
+                    },
+                    "banner": {
+                        "properties": {
+                            "intensity": {
+                                "type": "string",
+                                "nullable": true
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["intensity", "name", "id"],
+                        "type": "object"
+                    },
+                    "offerTag": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/ShopOfferTag"
+                            }
+                        ],
+                        "nullable": true
+                    },
+                    "granted": {
+                        "items": {
+                            "$ref": "#/components/schemas/FullCosmeticModel"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "mainId",
+                    "displayName",
+                    "displayDescription",
+                    "displayType",
+                    "mainType",
+                    "offerId",
+                    "devName",
+                    "displayAssets",
+                    "firstReleaseDate",
+                    "previousReleaseDate",
+                    "giftAllowed",
+                    "buyAllowed",
+                    "price",
+                    "rarity",
+                    "series",
+                    "banner",
+                    "offerTag",
+                    "granted"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "ShopResponse": {
+                "properties": {
+                    "result": {
+                        "type": "boolean"
+                    },
+                    "fullShop": {
+                        "type": "boolean"
+                    },
+                    "lastUpdate": {
+                        "properties": {
+                            "uid": {
+                                "type": "string"
+                            },
+                            "date": {
+                                "type": "string"
+                            }
+                        },
+                        "required": ["uid", "date"],
+                        "type": "object"
+                    },
+                    "currentRotation": {},
+                    "nextRotation": {},
+                    "carousel": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "specialOfferVideo": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "customBackground": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "shop": {
+                        "items": {
+                            "$ref": "#/components/schemas/ShopOffer"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "result",
+                    "fullShop",
+                    "lastUpdate",
+                    "currentRotation",
+                    "nextRotation",
+                    "carousel",
+                    "specialOfferVideo",
+                    "customBackground",
+                    "shop"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "BasicLookupResponse": {
+                "properties": {
+                    "result": {
+                        "type": "boolean"
+                    },
+                    "account_id": {
+                        "type": "string"
+                    }
+                },
+                "required": ["result", "account_id"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "Platforms": {
+                "type": "string",
+                "enum": ["epic", "psn", "xbl", "steam"]
+            },
+            "AdvancedLookUpResponseMatches": {
+                "properties": {
+                    "accountId": {
+                        "type": "string"
+                    },
+                    "matches": {
+                        "items": {
+                            "properties": {
+                                "platform": {
+                                    "type": "string"
+                                },
+                                "value": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": ["platform", "value"],
+                            "type": "object"
+                        },
+                        "type": "array"
+                    },
+                    "matchType": {
+                        "type": "string"
+                    }
+                },
+                "required": ["accountId", "matches", "matchType"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "AdvancedLookUpResponse": {
+                "properties": {
+                    "result": {
+                        "type": "boolean"
+                    },
+                    "matches": {
+                        "items": {
+                            "$ref": "#/components/schemas/AdvancedLookUpResponseMatches"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": ["result", "matches"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "ChallengeBundleEventInfoV3": {
+                "properties": {
+                    "start": {
+                        "type": "string"
+                    },
+                    "end": {
+                        "type": "string"
+                    }
+                },
+                "required": ["start", "end"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "ChallengeReward": {
+                "properties": {
+                    "xp": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "items": {}
+                },
+                "required": ["xp", "items"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "ChallengeV3": {
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "shortDescription": {
+                        "type": "string"
+                    },
+                    "categoryHeader": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "enabled": {
+                        "type": "boolean"
+                    },
+                    "enabledDate": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "parentQuest": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "progressTotal": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "tags": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "reward": {
+                        "$ref": "#/components/schemas/ChallengeReward"
+                    },
+                    "locations": {}
+                },
+                "required": [
+                    "id",
+                    "name",
+                    "description",
+                    "shortDescription",
+                    "categoryHeader",
+                    "enabled",
+                    "enabledDate",
+                    "parentQuest",
+                    "progressTotal",
+                    "tags",
+                    "reward",
+                    "locations"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "ChallengeBundleV3": {
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "unlockType": {
+                        "type": "string"
+                    },
+                    "tags": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "activeDates": {
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/ChallengeBundleEventInfoV3"
+                            }
+                        ],
+                        "nullable": true
+                    },
+                    "apiTags": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "colors": {
+                        "properties": {},
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "type": "object",
+                        "nullable": true
+                    },
+                    "images": {
+                        "properties": {},
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "type": "object",
+                        "nullable": true
+                    },
+                    "bundleRewards": {
+                        "items": {},
+                        "type": "array"
+                    },
+                    "category": {},
+                    "header": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "quests": {
+                        "items": {
+                            "$ref": "#/components/schemas/ChallengeV3"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name",
+                    "unlockType",
+                    "tags",
+                    "activeDates",
+                    "apiTags",
+                    "colors",
+                    "images",
+                    "bundleRewards",
+                    "category",
+                    "header",
+                    "quests"
+                ],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "ChallengeBundleCategoryV3": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "tag": {
+                        "type": "string"
+                    },
+                    "colorData": {
+                        "properties": {},
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "type": "object",
+                        "nullable": true
+                    },
+                    "image": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "bundles": {
+                        "items": {
+                            "$ref": "#/components/schemas/ChallengeBundleV3"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": ["name", "tag", "colorData", "image", "bundles"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "ChallengesResponse": {
+                "properties": {
+                    "result": {
+                        "type": "boolean"
+                    },
+                    "season": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "lang": {
+                        "type": "string"
+                    },
+                    "bundles": {
+                        "items": {
+                            "$ref": "#/components/schemas/ChallengeBundleCategoryV3"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": ["result", "season", "lang", "bundles"],
+                "type": "object",
+                "additionalProperties": false
+            },
+            "PlayerGlobalStats": {
+                "type": "object",
+                "properties": {
+                    "result": {
+                        "type": "boolean"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "account": {
+                        "type": "object",
+                        "properties": {
+                            "season": {
+                                "type": "integer"
+                            },
+                            "level": {
+                                "type": "integer"
+                            },
+                            "process_pct": {
+                                "type": "integer"
+                            }
+                        },
+                        "required": ["season", "level", "process_pct"]
+                    },
+                    "accountLevelHistory": {
+                        "type": "array",
+                        "items": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "season": {
+                                        "type": "integer"
+                                    },
+                                    "level": {
+                                        "type": "integer"
+                                    },
+                                    "process_pct": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": ["season", "level", "process_pct"]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "season": {
+                                        "type": "integer"
+                                    },
+                                    "level": {
+                                        "type": "integer"
+                                    },
+                                    "process_pct": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": ["season", "level", "process_pct"]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "season": {
+                                        "type": "integer"
+                                    },
+                                    "level": {
+                                        "type": "integer"
+                                    },
+                                    "process_pct": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": ["season", "level", "process_pct"]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "season": {
+                                        "type": "integer"
+                                    },
+                                    "level": {
+                                        "type": "integer"
+                                    },
+                                    "process_pct": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": ["season", "level", "process_pct"]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "season": {
+                                        "type": "integer"
+                                    },
+                                    "level": {
+                                        "type": "integer"
+                                    },
+                                    "process_pct": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": ["season", "level", "process_pct"]
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "season": {
+                                        "type": "integer"
+                                    },
+                                    "level": {
+                                        "type": "integer"
+                                    },
+                                    "process_pct": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": ["season", "level", "process_pct"]
+                            }
+                        ]
+                    },
+                    "global_stats": {
+                        "type": "object",
+                        "properties": {
+                            "duo": {
+                                "type": "object",
+                                "properties": {
+                                    "placetop1": {
+                                        "type": "integer"
+                                    },
+                                    "kd": {
+                                        "type": "number"
+                                    },
+                                    "winrate": {
+                                        "type": "number"
+                                    },
+                                    "placetop3": {
+                                        "type": "integer"
+                                    },
+                                    "placetop5": {
+                                        "type": "integer"
+                                    },
+                                    "placetop6": {
+                                        "type": "integer"
+                                    },
+                                    "placetop10": {
+                                        "type": "integer"
+                                    },
+                                    "placetop12": {
+                                        "type": "integer"
+                                    },
+                                    "placetop25": {
+                                        "type": "integer"
+                                    },
+                                    "kills": {
+                                        "type": "integer"
+                                    },
+                                    "matchesplayed": {
+                                        "type": "integer"
+                                    },
+                                    "minutesplayed": {
+                                        "type": "integer"
+                                    },
+                                    "score": {
+                                        "type": "integer"
+                                    },
+                                    "playersoutlived": {
+                                        "type": "integer"
+                                    },
+                                    "lastmodified": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "placetop1",
+                                    "kd",
+                                    "winrate",
+                                    "placetop3",
+                                    "placetop5",
+                                    "placetop6",
+                                    "placetop10",
+                                    "placetop12",
+                                    "placetop25",
+                                    "kills",
+                                    "matchesplayed",
+                                    "minutesplayed",
+                                    "score",
+                                    "playersoutlived",
+                                    "lastmodified"
+                                ]
+                            },
+                            "trio": {
+                                "type": "object",
+                                "properties": {
+                                    "placetop1": {
+                                        "type": "integer"
+                                    },
+                                    "kd": {
+                                        "type": "number"
+                                    },
+                                    "winrate": {
+                                        "type": "number"
+                                    },
+                                    "placetop3": {
+                                        "type": "integer"
+                                    },
+                                    "placetop5": {
+                                        "type": "integer"
+                                    },
+                                    "placetop6": {
+                                        "type": "integer"
+                                    },
+                                    "placetop10": {
+                                        "type": "integer"
+                                    },
+                                    "placetop12": {
+                                        "type": "integer"
+                                    },
+                                    "placetop25": {
+                                        "type": "integer"
+                                    },
+                                    "kills": {
+                                        "type": "integer"
+                                    },
+                                    "matchesplayed": {
+                                        "type": "integer"
+                                    },
+                                    "minutesplayed": {
+                                        "type": "integer"
+                                    },
+                                    "score": {
+                                        "type": "integer"
+                                    },
+                                    "playersoutlived": {
+                                        "type": "integer"
+                                    },
+                                    "lastmodified": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "placetop1",
+                                    "kd",
+                                    "winrate",
+                                    "placetop3",
+                                    "placetop5",
+                                    "placetop6",
+                                    "placetop10",
+                                    "placetop12",
+                                    "placetop25",
+                                    "kills",
+                                    "matchesplayed",
+                                    "minutesplayed",
+                                    "score",
+                                    "playersoutlived",
+                                    "lastmodified"
+                                ]
+                            },
+                            "squad": {
+                                "type": "object",
+                                "properties": {
+                                    "placetop1": {
+                                        "type": "integer"
+                                    },
+                                    "kd": {
+                                        "type": "number"
+                                    },
+                                    "winrate": {
+                                        "type": "number"
+                                    },
+                                    "placetop3": {
+                                        "type": "integer"
+                                    },
+                                    "placetop5": {
+                                        "type": "integer"
+                                    },
+                                    "placetop6": {
+                                        "type": "integer"
+                                    },
+                                    "placetop10": {
+                                        "type": "integer"
+                                    },
+                                    "placetop12": {
+                                        "type": "integer"
+                                    },
+                                    "placetop25": {
+                                        "type": "integer"
+                                    },
+                                    "kills": {
+                                        "type": "integer"
+                                    },
+                                    "matchesplayed": {
+                                        "type": "integer"
+                                    },
+                                    "minutesplayed": {
+                                        "type": "integer"
+                                    },
+                                    "score": {
+                                        "type": "integer"
+                                    },
+                                    "playersoutlived": {
+                                        "type": "integer"
+                                    },
+                                    "lastmodified": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "placetop1",
+                                    "kd",
+                                    "winrate",
+                                    "placetop3",
+                                    "placetop5",
+                                    "placetop6",
+                                    "placetop10",
+                                    "placetop12",
+                                    "placetop25",
+                                    "kills",
+                                    "matchesplayed",
+                                    "minutesplayed",
+                                    "score",
+                                    "playersoutlived",
+                                    "lastmodified"
+                                ]
+                            },
+                            "solo": {
+                                "type": "object",
+                                "properties": {
+                                    "placetop1": {
+                                        "type": "integer"
+                                    },
+                                    "kd": {
+                                        "type": "number"
+                                    },
+                                    "winrate": {
+                                        "type": "number"
+                                    },
+                                    "placetop3": {
+                                        "type": "integer"
+                                    },
+                                    "placetop5": {
+                                        "type": "integer"
+                                    },
+                                    "placetop6": {
+                                        "type": "integer"
+                                    },
+                                    "placetop10": {
+                                        "type": "integer"
+                                    },
+                                    "placetop12": {
+                                        "type": "integer"
+                                    },
+                                    "placetop25": {
+                                        "type": "integer"
+                                    },
+                                    "kills": {
+                                        "type": "integer"
+                                    },
+                                    "matchesplayed": {
+                                        "type": "integer"
+                                    },
+                                    "minutesplayed": {
+                                        "type": "integer"
+                                    },
+                                    "score": {
+                                        "type": "integer"
+                                    },
+                                    "playersoutlived": {
+                                        "type": "integer"
+                                    },
+                                    "lastmodified": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "placetop1",
+                                    "kd",
+                                    "winrate",
+                                    "placetop3",
+                                    "placetop5",
+                                    "placetop6",
+                                    "placetop10",
+                                    "placetop12",
+                                    "placetop25",
+                                    "kills",
+                                    "matchesplayed",
+                                    "minutesplayed",
+                                    "score",
+                                    "playersoutlived",
+                                    "lastmodified"
+                                ]
+                            }
+                        },
+                        "required": ["duo", "trio", "squad", "solo"]
+                    },
+                    "per_input": {
+                        "type": "object",
+                        "properties": {
+                            "keyboardmouse": {
+                                "type": "object",
+                                "properties": {
+                                    "duo": {
+                                        "type": "object",
+                                        "properties": {
+                                            "placetop1": {
+                                                "type": "integer"
+                                            },
+                                            "kd": {
+                                                "type": "number"
+                                            },
+                                            "winrate": {
+                                                "type": "number"
+                                            },
+                                            "placetop3": {
+                                                "type": "integer"
+                                            },
+                                            "placetop5": {
+                                                "type": "integer"
+                                            },
+                                            "placetop6": {
+                                                "type": "integer"
+                                            },
+                                            "placetop10": {
+                                                "type": "integer"
+                                            },
+                                            "placetop12": {
+                                                "type": "integer"
+                                            },
+                                            "placetop25": {
+                                                "type": "integer"
+                                            },
+                                            "kills": {
+                                                "type": "integer"
+                                            },
+                                            "matchesplayed": {
+                                                "type": "integer"
+                                            },
+                                            "minutesplayed": {
+                                                "type": "integer"
+                                            },
+                                            "score": {
+                                                "type": "integer"
+                                            },
+                                            "playersoutlived": {
+                                                "type": "integer"
+                                            },
+                                            "lastmodified": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "placetop1",
+                                            "kd",
+                                            "winrate",
+                                            "placetop3",
+                                            "placetop5",
+                                            "placetop6",
+                                            "placetop10",
+                                            "placetop12",
+                                            "placetop25",
+                                            "kills",
+                                            "matchesplayed",
+                                            "minutesplayed",
+                                            "score",
+                                            "playersoutlived",
+                                            "lastmodified"
+                                        ]
+                                    },
+                                    "trio": {
+                                        "type": "object",
+                                        "properties": {
+                                            "placetop1": {
+                                                "type": "integer"
+                                            },
+                                            "kd": {
+                                                "type": "number"
+                                            },
+                                            "winrate": {
+                                                "type": "number"
+                                            },
+                                            "placetop3": {
+                                                "type": "integer"
+                                            },
+                                            "placetop5": {
+                                                "type": "integer"
+                                            },
+                                            "placetop6": {
+                                                "type": "integer"
+                                            },
+                                            "placetop10": {
+                                                "type": "integer"
+                                            },
+                                            "placetop12": {
+                                                "type": "integer"
+                                            },
+                                            "placetop25": {
+                                                "type": "integer"
+                                            },
+                                            "kills": {
+                                                "type": "integer"
+                                            },
+                                            "matchesplayed": {
+                                                "type": "integer"
+                                            },
+                                            "minutesplayed": {
+                                                "type": "integer"
+                                            },
+                                            "score": {
+                                                "type": "integer"
+                                            },
+                                            "playersoutlived": {
+                                                "type": "integer"
+                                            },
+                                            "lastmodified": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "placetop1",
+                                            "kd",
+                                            "winrate",
+                                            "placetop3",
+                                            "placetop5",
+                                            "placetop6",
+                                            "placetop10",
+                                            "placetop12",
+                                            "placetop25",
+                                            "kills",
+                                            "matchesplayed",
+                                            "minutesplayed",
+                                            "score",
+                                            "playersoutlived",
+                                            "lastmodified"
+                                        ]
+                                    },
+                                    "squad": {
+                                        "type": "object",
+                                        "properties": {
+                                            "placetop1": {
+                                                "type": "integer"
+                                            },
+                                            "kd": {
+                                                "type": "number"
+                                            },
+                                            "winrate": {
+                                                "type": "number"
+                                            },
+                                            "placetop3": {
+                                                "type": "integer"
+                                            },
+                                            "placetop5": {
+                                                "type": "integer"
+                                            },
+                                            "placetop6": {
+                                                "type": "integer"
+                                            },
+                                            "placetop10": {
+                                                "type": "integer"
+                                            },
+                                            "placetop12": {
+                                                "type": "integer"
+                                            },
+                                            "placetop25": {
+                                                "type": "integer"
+                                            },
+                                            "kills": {
+                                                "type": "integer"
+                                            },
+                                            "matchesplayed": {
+                                                "type": "integer"
+                                            },
+                                            "minutesplayed": {
+                                                "type": "integer"
+                                            },
+                                            "score": {
+                                                "type": "integer"
+                                            },
+                                            "playersoutlived": {
+                                                "type": "integer"
+                                            },
+                                            "lastmodified": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "placetop1",
+                                            "kd",
+                                            "winrate",
+                                            "placetop3",
+                                            "placetop5",
+                                            "placetop6",
+                                            "placetop10",
+                                            "placetop12",
+                                            "placetop25",
+                                            "kills",
+                                            "matchesplayed",
+                                            "minutesplayed",
+                                            "score",
+                                            "playersoutlived",
+                                            "lastmodified"
+                                        ]
+                                    },
+                                    "solo": {
+                                        "type": "object",
+                                        "properties": {
+                                            "placetop1": {
+                                                "type": "integer"
+                                            },
+                                            "kd": {
+                                                "type": "number"
+                                            },
+                                            "winrate": {
+                                                "type": "number"
+                                            },
+                                            "placetop3": {
+                                                "type": "integer"
+                                            },
+                                            "placetop5": {
+                                                "type": "integer"
+                                            },
+                                            "placetop6": {
+                                                "type": "integer"
+                                            },
+                                            "placetop10": {
+                                                "type": "integer"
+                                            },
+                                            "placetop12": {
+                                                "type": "integer"
+                                            },
+                                            "placetop25": {
+                                                "type": "integer"
+                                            },
+                                            "kills": {
+                                                "type": "integer"
+                                            },
+                                            "matchesplayed": {
+                                                "type": "integer"
+                                            },
+                                            "minutesplayed": {
+                                                "type": "integer"
+                                            },
+                                            "score": {
+                                                "type": "integer"
+                                            },
+                                            "playersoutlived": {
+                                                "type": "integer"
+                                            },
+                                            "lastmodified": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "placetop1",
+                                            "kd",
+                                            "winrate",
+                                            "placetop3",
+                                            "placetop5",
+                                            "placetop6",
+                                            "placetop10",
+                                            "placetop12",
+                                            "placetop25",
+                                            "kills",
+                                            "matchesplayed",
+                                            "minutesplayed",
+                                            "score",
+                                            "playersoutlived",
+                                            "lastmodified"
+                                        ]
+                                    }
+                                },
+                                "required": ["duo", "trio", "squad", "solo"]
+                            },
+                            "gamepad": {
+                                "type": "object",
+                                "properties": {
+                                    "solo": {
+                                        "type": "object",
+                                        "properties": {
+                                            "placetop1": {
+                                                "type": "integer"
+                                            },
+                                            "kd": {
+                                                "type": "number"
+                                            },
+                                            "winrate": {
+                                                "type": "integer"
+                                            },
+                                            "placetop3": {
+                                                "type": "integer"
+                                            },
+                                            "placetop5": {
+                                                "type": "integer"
+                                            },
+                                            "placetop6": {
+                                                "type": "integer"
+                                            },
+                                            "placetop10": {
+                                                "type": "integer"
+                                            },
+                                            "placetop12": {
+                                                "type": "integer"
+                                            },
+                                            "placetop25": {
+                                                "type": "integer"
+                                            },
+                                            "kills": {
+                                                "type": "integer"
+                                            },
+                                            "matchesplayed": {
+                                                "type": "integer"
+                                            },
+                                            "minutesplayed": {
+                                                "type": "integer"
+                                            },
+                                            "score": {
+                                                "type": "integer"
+                                            },
+                                            "playersoutlived": {
+                                                "type": "integer"
+                                            },
+                                            "lastmodified": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "placetop1",
+                                            "kd",
+                                            "winrate",
+                                            "placetop3",
+                                            "placetop5",
+                                            "placetop6",
+                                            "placetop10",
+                                            "placetop12",
+                                            "placetop25",
+                                            "kills",
+                                            "matchesplayed",
+                                            "minutesplayed",
+                                            "score",
+                                            "playersoutlived",
+                                            "lastmodified"
+                                        ]
+                                    },
+                                    "squad": {
+                                        "type": "object",
+                                        "properties": {
+                                            "placetop1": {
+                                                "type": "integer"
+                                            },
+                                            "kd": {
+                                                "type": "integer"
+                                            },
+                                            "winrate": {
+                                                "type": "integer"
+                                            },
+                                            "placetop3": {
+                                                "type": "integer"
+                                            },
+                                            "placetop5": {
+                                                "type": "integer"
+                                            },
+                                            "placetop6": {
+                                                "type": "integer"
+                                            },
+                                            "placetop10": {
+                                                "type": "integer"
+                                            },
+                                            "placetop12": {
+                                                "type": "integer"
+                                            },
+                                            "placetop25": {
+                                                "type": "integer"
+                                            },
+                                            "kills": {
+                                                "type": "integer"
+                                            },
+                                            "matchesplayed": {
+                                                "type": "integer"
+                                            },
+                                            "minutesplayed": {
+                                                "type": "integer"
+                                            },
+                                            "score": {
+                                                "type": "integer"
+                                            },
+                                            "playersoutlived": {
+                                                "type": "integer"
+                                            },
+                                            "lastmodified": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "placetop1",
+                                            "kd",
+                                            "winrate",
+                                            "placetop3",
+                                            "placetop5",
+                                            "placetop6",
+                                            "placetop10",
+                                            "placetop12",
+                                            "placetop25",
+                                            "kills",
+                                            "matchesplayed",
+                                            "minutesplayed",
+                                            "score",
+                                            "playersoutlived",
+                                            "lastmodified"
+                                        ]
+                                    }
+                                },
+                                "required": ["solo", "squad"]
+                            },
+                            "touch": {
+                                "type": "object",
+                                "properties": {
+                                    "solo": {
+                                        "type": "object",
+                                        "properties": {
+                                            "placetop1": {
+                                                "type": "integer"
+                                            },
+                                            "kd": {
+                                                "type": "number"
+                                            },
+                                            "winrate": {
+                                                "type": "integer"
+                                            },
+                                            "placetop3": {
+                                                "type": "integer"
+                                            },
+                                            "placetop5": {
+                                                "type": "integer"
+                                            },
+                                            "placetop6": {
+                                                "type": "integer"
+                                            },
+                                            "placetop10": {
+                                                "type": "integer"
+                                            },
+                                            "placetop12": {
+                                                "type": "integer"
+                                            },
+                                            "placetop25": {
+                                                "type": "integer"
+                                            },
+                                            "kills": {
+                                                "type": "integer"
+                                            },
+                                            "matchesplayed": {
+                                                "type": "integer"
+                                            },
+                                            "minutesplayed": {
+                                                "type": "integer"
+                                            },
+                                            "score": {
+                                                "type": "integer"
+                                            },
+                                            "playersoutlived": {
+                                                "type": "integer"
+                                            },
+                                            "lastmodified": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "placetop1",
+                                            "kd",
+                                            "winrate",
+                                            "placetop3",
+                                            "placetop5",
+                                            "placetop6",
+                                            "placetop10",
+                                            "placetop12",
+                                            "placetop25",
+                                            "kills",
+                                            "matchesplayed",
+                                            "minutesplayed",
+                                            "score",
+                                            "playersoutlived",
+                                            "lastmodified"
+                                        ]
+                                    },
+                                    "squad": {
+                                        "type": "object",
+                                        "properties": {
+                                            "placetop1": {
+                                                "type": "integer"
+                                            },
+                                            "kd": {
+                                                "type": "integer"
+                                            },
+                                            "winrate": {
+                                                "type": "integer"
+                                            },
+                                            "placetop3": {
+                                                "type": "integer"
+                                            },
+                                            "placetop5": {
+                                                "type": "integer"
+                                            },
+                                            "placetop6": {
+                                                "type": "integer"
+                                            },
+                                            "placetop10": {
+                                                "type": "integer"
+                                            },
+                                            "placetop12": {
+                                                "type": "integer"
+                                            },
+                                            "placetop25": {
+                                                "type": "integer"
+                                            },
+                                            "kills": {
+                                                "type": "integer"
+                                            },
+                                            "matchesplayed": {
+                                                "type": "integer"
+                                            },
+                                            "minutesplayed": {
+                                                "type": "integer"
+                                            },
+                                            "score": {
+                                                "type": "integer"
+                                            },
+                                            "playersoutlived": {
+                                                "type": "integer"
+                                            },
+                                            "lastmodified": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "required": [
+                                            "placetop1",
+                                            "kd",
+                                            "winrate",
+                                            "placetop3",
+                                            "placetop5",
+                                            "placetop6",
+                                            "placetop10",
+                                            "placetop12",
+                                            "placetop25",
+                                            "kills",
+                                            "matchesplayed",
+                                            "minutesplayed",
+                                            "score",
+                                            "playersoutlived",
+                                            "lastmodified"
+                                        ]
+                                    }
+                                },
+                                "required": ["solo", "squad"]
+                            }
+                        },
+                        "required": ["keyboardmouse", "gamepad", "touch"]
+                    },
+                    "seasons_available": {
+                        "type": "array",
+                        "items": [
+                            {
+                                "type": "integer"
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "result",
+                    "name",
+                    "account",
+                    "accountLevelHistory",
+                    "global_stats",
+                    "per_input",
+                    "seasons_available"
+                ]
+            }
+        },
+        "securitySchemes": {
+            "api_key": {
+                "description": "Your private API Key",
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    },
+    "info": {
+        "title": "FortniteApi.io",
+        "version": "1.0.0",
+        "description": "Official documentation for the API",
+        "license": {
+            "name": "MIT OR Apache-2.0"
+        },
+        "contact": {
+            "name": "Quentin Bellus"
+        }
+    },
+    "openapi": "3.0.0",
+    "paths": {
+        "/v1/events/list": {
+            "get": {
+                "operationId": "GetTournamentsV1",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TournamentResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": ["code"],
+                                            "type": "object"
+                                        },
+                                        "result": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "required": ["error", "result"],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": "List all tournaments",
+                "tags": ["Free"],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "description": "Language for the response (default: english)",
+                        "in": "query",
+                        "name": "lang",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/components/schemas/LanguageCodes"
+                        }
+                    },
+                    {
+                        "description": "Region of the tournament (default: EU)",
+                        "in": "query",
+                        "name": "region",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/components/schemas/TournamentRegions"
+                        }
+                    },
+                    {
+                        "description": "Season number for the response (default: current)",
+                        "in": "query",
+                        "name": "season",
+                        "required": false,
+                        "schema": {
+                            "format": "double",
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "description": "Include arena tournements (default: false)",
+                        "in": "query",
+                        "name": "showArena",
+                        "required": false,
+                        "schema": {
+                            "default": false,
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "description": "Filter to only one display ID",
+                        "in": "query",
+                        "name": "displayId",
+                        "required": false,
+                        "schema": {
+                            "default": "",
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        },
+        "/v1/events/list/active": {
+            "get": {
+                "operationId": "GetActiveTournamentsV1",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TournamentResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": "List active tournaments",
+                "tags": ["Free"],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "description": "Language for the response (default: english)",
+                        "in": "query",
+                        "name": "lang",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/components/schemas/LanguageCodes"
+                        }
+                    },
+                    {
+                        "description": "Region of the tournament (default: ALL)",
+                        "in": "query",
+                        "name": "region",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/components/schemas/TournamentRegions"
+                        }
+                    },
+                    {
+                        "description": "Include arena tournements (default: false)",
+                        "in": "query",
+                        "name": "showArena",
+                        "required": false,
+                        "schema": {
+                            "default": false,
+                            "type": "boolean"
+                        }
+                    }
+                ]
+            }
+        },
+        "/v1/events/list/live": {
+            "get": {
+                "operationId": "GetLiveTournamentsV1",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TournamentResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": "List live tournaments",
+                "tags": ["Free"],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "description": "Language for the response (default: english)",
+                        "in": "query",
+                        "name": "lang",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/components/schemas/LanguageCodes"
+                        }
+                    },
+                    {
+                        "description": "Region of the tournament (default: ALL)",
+                        "in": "query",
+                        "name": "region",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/components/schemas/TournamentRegions"
+                        }
+                    },
+                    {
+                        "description": "Include arena tournements (default: false)",
+                        "in": "query",
+                        "name": "showArena",
+                        "required": false,
+                        "schema": {
+                            "default": false,
+                            "type": "boolean"
+                        }
+                    }
+                ]
+            }
+        },
+        "/v1/events/window": {
+            "get": {
+                "operationId": "GetWindowV1",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TournamentWindowResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": ["code"],
+                                            "type": "object"
+                                        },
+                                        "result": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "required": ["error", "result"],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": ["code"],
+                                            "type": "object"
+                                        },
+                                        "result": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "required": ["error", "result"],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": "Get a tournament's window results",
+                "tags": ["Free"],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "description": "Window ID to get",
+                        "in": "query",
+                        "name": "windowId",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page to return (default: 0)",
+                        "in": "query",
+                        "name": "page",
+                        "required": false,
+                        "schema": {
+                            "default": 0,
+                            "format": "double",
+                            "type": "number"
+                        }
+                    }
+                ]
+            }
+        },
+        "/v1/augments": {
+            "get": {
+                "operationId": "ListAugments",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AugmentsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": ["code"],
+                                            "type": "object"
+                                        },
+                                        "result": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "required": ["error", "result"],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": "List all the augments",
+                "tags": ["Free"],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "description": "Language for the response (default: english)",
+                        "in": "query",
+                        "name": "lang",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/components/schemas/LanguageCodes"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "season",
+                        "required": false,
+                        "schema": {
+                            "format": "double",
+                            "type": "number"
+                        }
+                    }
+                ]
+            }
+        },
+        "/v1/twitch/drops": {
+            "get": {
+                "operationId": "GetDrops",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TwitchDropResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": "Get the list of Twitch Drops for Fortnite",
+                "tags": ["Free"],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "description": "Allows you to filter on a specific status. By default, all drops will be returned. Filter on \"ACTIVE\" to get only the current drops.",
+                        "in": "query",
+                        "name": "status",
+                        "required": false,
+                        "schema": {
+                            "default": null,
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        },
+        "/v2/bundles": {
+            "get": {
+                "operationId": "GetBundles",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BundlesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": ["code"],
+                                            "type": "object"
+                                        },
+                                        "result": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "required": ["error", "result"],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": "List all bundles",
+                "tags": ["Premium"],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "description": "Language for the response (default: english)",
+                        "in": "query",
+                        "name": "lang",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/LanguageCodes"
+                        }
+                    },
+                    {
+                        "description": "Show only bundles that are enabled in game (default: false)",
+                        "in": "query",
+                        "name": "available",
+                        "required": false,
+                        "schema": {
+                            "default": false,
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "description": "Include render data for each display asset (default: false)",
+                        "in": "query",
+                        "name": "renderData",
+                        "required": false,
+                        "schema": {
+                            "default": false,
+                            "type": "boolean"
+                        }
+                    }
+                ]
+            }
+        },
+        "/v2/rarities": {
+            "get": {
+                "operationId": "GetRarities",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RarityResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": "Get all rarities and series",
+                "tags": ["Free"],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "description": "Language for the response (default: english)",
+                        "in": "query",
+                        "name": "lang",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/components/schemas/LanguageCodes"
+                        }
+                    }
+                ]
+            }
+        },
+        "/v2/shop": {
+            "get": {
+                "operationId": "GetShop",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ShopResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": ["code"],
+                                            "type": "object"
+                                        },
+                                        "result": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "required": ["error", "result"],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": "Get Daily Shop",
+                "tags": ["Free"],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "description": "Language for the response (default: english)",
+                        "in": "query",
+                        "name": "lang",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/components/schemas/LanguageCodes"
+                        }
+                    },
+                    {
+                        "description": "Set to true if you want to get the render data for each display asset",
+                        "in": "query",
+                        "name": "includeRenderData",
+                        "required": false,
+                        "schema": {
+                            "default": false,
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "description": "Allows you to customize the list of fields to return for each cosmetics (comma separated)",
+                        "in": "query",
+                        "name": "fields",
+                        "required": false,
+                        "schema": {
+                            "default": "",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Date of the shop (available from Jan 1st 2022) - Format: yyyy-mm-dd",
+                        "in": "query",
+                        "name": "date",
+                        "required": false,
+                        "schema": {
+                            "default": "",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Set to true if you want to include the tabs hidden in the game",
+                        "in": "query",
+                        "name": "includeHiddenTabs",
+                        "required": false,
+                        "schema": {
+                            "default": false,
+                            "type": "boolean"
+                        }
+                    }
+                ]
+            }
+        },
+        "/v2/lookup": {
+            "get": {
+                "operationId": "BasicLookup",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BasicLookupResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": ["code"],
+                                            "type": "object"
+                                        },
+                                        "result": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "required": ["error", "result"],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": ["code"],
+                                            "type": "object"
+                                        },
+                                        "result": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "required": ["error", "result"],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "properties": {
+                                                "details": {
+                                                    "type": "string"
+                                                },
+                                                "code": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": ["details", "code"],
+                                            "type": "object"
+                                        },
+                                        "result": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "required": ["error", "result"],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": "Search an account ID using a player name",
+                "tags": ["Free"],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "description": "Username of the player",
+                        "in": "query",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Platform the player account was created on. Default: epic",
+                        "in": "query",
+                        "name": "platform",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/components/schemas/Platforms"
+                        }
+                    }
+                ]
+            }
+        },
+        "/v2/lookup/advanced": {
+            "get": {
+                "operationId": "AdvancedLookup",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AdvancedLookUpResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": ["code"],
+                                            "type": "object"
+                                        },
+                                        "result": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "required": ["error", "result"],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": ["code"],
+                                            "type": "object"
+                                        },
+                                        "result": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "required": ["error", "result"],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "properties": {
+                                                "details": {
+                                                    "type": "string"
+                                                },
+                                                "code": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": ["details", "code"],
+                                            "type": "object"
+                                        },
+                                        "result": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "required": ["error", "result"],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": "Search an account ID using a player name and returns similar matches",
+                "tags": ["Free"],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "description": "Username of the player",
+                        "in": "query",
+                        "name": "username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        },
+        "/v3/challenges": {
+            "get": {
+                "operationId": "GetChallenges",
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ChallengesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": ["code"],
+                                            "type": "object"
+                                        },
+                                        "result": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "required": ["error", "result"],
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": "Get all challenges for a specified season",
+                "tags": ["Free"],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "description": "Language for the response (default: english)",
+                        "in": "query",
+                        "name": "lang",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/components/schemas/LanguageCodes"
+                        }
+                    },
+                    {
+                        "description": "Season number for the response (default: current)",
+                        "in": "query",
+                        "name": "season",
+                        "required": false,
+                        "schema": {
+                            "format": "double",
+                            "type": "number"
+                        }
+                    }
+                ]
+            }
+        },
+        "/v1/stats": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PlayerGlobalStats"
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "GetGlobalPlayerStats",
+                "description": "Get player stats, with a breakdown per platform used (mouse & keyboard, gamepad, touch)",
+                "tags": ["Free"],
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "description": "Account id",
+                        "in": "query",
+                        "name": "account",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "servers": [
+        {
+            "url": "https://fortniteapi.io"
+        }
+    ]
+}

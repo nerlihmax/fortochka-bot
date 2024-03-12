@@ -1,0 +1,8 @@
+.DS_Store
+*.db
+
+build
+node_modules
+
+src/fortnite/*
+!src/fortnite/client.ts

@@ -1,0 +1,27 @@
+{
+    "name": "fortochka-bot",
+    "author": "Nerlih Max <nerlihmax@yandex-team.ru>",
+    "scripts": {
+        "start": "node --enable-source-maps build/bot.js",
+        "build": "esbuild src/bot.ts --bundle --sourcemap --packages=external --platform=node --outfile=build/bot.js",
+        "migrations:generate": "drizzle-kit generate:sqlite",
+        "api:generate": "openapi --input ./openapi.json --output ./src/fortnite --name 'FortniteAPI'"
+    },
+    "devDependencies": {
+        "@types/better-sqlite3": "^7.6.9",
+        "@types/luxon": "^3.4.2",
+        "@types/node": "^20.11.20",
+        "drizzle-kit": "^0.20.14",
+        "esbuild": "^0.20.1",
+        "openapi-typescript-codegen": "^0.27.0",
+        "prettier": "^3.2.5",
+        "typescript": "^5.3.3"
+    },
+    "dependencies": {
+        "better-sqlite3": "^9.4.3",
+        "drizzle-orm": "^0.30.1",
+        "grammy": "^1.21.1",
+        "luxon": "^3.4.4",
+        "tslog": "^4.9.2"
+    }
+}
