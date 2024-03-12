@@ -7,7 +7,7 @@ import { integer, sqliteTable, text, real } from 'drizzle-orm/sqlite-core';
 import { logger } from './log';
 
 const openDb = () => {
-    const dbPath = path.resolve(__dirname, './bot.db'),
+    const dbPath = path.resolve(__dirname, '../data/bot.db'),
         migrationsFolder = path.resolve(__dirname, '../drizzle');
 
     logger.debug(`opening ${dbPath}`);

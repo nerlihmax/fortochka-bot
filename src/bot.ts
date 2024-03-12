@@ -15,8 +15,12 @@ bot.catch(({ ctx, error }) => {
     if (error instanceof TelegramUserError) {
         ctx.reply(error.message);
     } else {
+        ctx.reply(`Неизвестная ошибка`);
         logger.fatal('unknown error', error);
     }
 });
 
-bot.start().then(() => logger.info('started'));
+bot.start({
+    allowed_updates: ['message'],
+    drop_pending_updates: true,
+}).then(() => logger.info('started'));
