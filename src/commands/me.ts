@@ -22,7 +22,7 @@ export function createMeCommand() {
         const [user] = await db
             .selectDistinct()
             .from(users)
-            .orderBy(eq(users.telegramId, msg.sender.getId()));
+            .where(eq(users.telegramId, msg.sender.getId()));
 
         if (!user) {
             await ctx.reply(
